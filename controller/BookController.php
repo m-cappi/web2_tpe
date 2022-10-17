@@ -53,8 +53,8 @@ Class BookController extends Controller{
 
     public function updateOne(){
         $this->authCheck();
-        if (!empty($_POST['id']) && !empty($_POST['title']) && !empty($_POST['genre']) && !empty($_POST['authorId'])){
-            $this->model->updateById($_POST['id'], $_POST['title'], $_POST['genre'], $_POST['authorId']);
+        if (!empty($_POST['id']) && !empty($_POST['title']) && !empty($_POST['genre']) && !empty($_POST['FK_author_id'])){
+            $this->model->updateById($_POST['id'], $_POST['title'], $_POST['genre'], $_POST['FK_author_id']);
         }
         else{
             // error?
