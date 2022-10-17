@@ -10,7 +10,7 @@
         <article class="row">
             <p class="col">
                 <a href="author/{$author->id}" >
-                  {$author->name}, {$author->last_name}
+                  {$author->name|lower|capitalize}, {$author->last_name|lower|capitalize}
                 </a>
             </p>
         </article>

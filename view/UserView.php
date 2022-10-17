@@ -11,12 +11,12 @@ Class UserView extends View{
         $this->smarty->assign('docTitle', DOC_TITLE);
     }
 
-    public function showList($usersObj){
+    public function showList($usersObj, $errorMsg = ''){
         $this->smarty->assign('users', $usersObj);
-        $this->showLayout("users.tpl");
+        $this->showLayout("users.tpl", $errorMsg);
     }
 
-    public function showDetail($userObj){
+    public function showDetail($userObj, $errorMsg = ''){
 
     }
 }

@@ -6,7 +6,7 @@ require_once('../controller/AuthorController.php');
 // tecnicamente es relativa a donde esta este archivo index?
 require_once('BookController.php');
 require_once('HomeController.php');
-require_once('UserController.php');
+// require_once('UserController.php');
 
 
 ?>

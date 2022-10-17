@@ -20,16 +20,16 @@
 <article class="row">
     <p class="col">
       <a href="author/{$book->FK_author_id}" >
-        {$book->author}
+        {$book->author|lower|capitalize}
       </a>
     </p>
     <p class="col-6">
         <a href="book/{$book->id}" >
-        {$book->title}
+        {$book->title|lower|capitalize}
         </a>
     </p>
     <p class="col">
-      {$book->genre}
+      {$book->genre|lower|capitalize}
     </p>
 </article>
 

@@ -9,9 +9,6 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="home">Inicio</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="books/list">Libros</a>
           </li>
           <li class="nav-item">
@@ -26,7 +23,7 @@
             </a>
           </span>
         {else}
-          <span class="navbar-brand">{$user['alias']}</span>
+          <span class="navbar-brand">Hola {$user['alias']|lower|capitalize}!</span>
           <a href="logout" class="nav-link">
             <i class="fas fa-1x fa-solid fa-door-open">Logout</i>
           </a>

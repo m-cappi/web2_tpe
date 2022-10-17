@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2022 at 07:24 PM
+-- Generation Time: Oct 17, 2022 at 04:49 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.4
 
@@ -26,57 +26,68 @@ USE `web2_tpe`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `author`
+-- Table structure for table `authors`
 --
 
 DROP TABLE IF EXISTS `authors`;
-CREATE TABLE IF NOT EXISTS `authors` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `authors` (
+  `id` int(11) NOT NULL,
   `name` varchar(120) NOT NULL,
-  `last_name` varchar(120) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  `last_name` varchar(120) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Truncate table before insert `author`
+-- RELATIONSHIPS FOR TABLE `authors`:
+--
+
+--
+-- Truncate table before insert `authors`
 --
 
 TRUNCATE TABLE `authors`;
 --
--- Dumping data for table `author`
+-- Dumping data for table `authors`
 --
 
 INSERT INTO `authors` (`id`, `name`, `last_name`) VALUES
 (1, 'Martin', 'Cappi'),
-(2, 'Coco', 'Michi');
+(2, 'Coco', 'Michi'),
+(3, 'JRR', 'Tolkien');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `book`
+-- Table structure for table `books`
 --
 
 DROP TABLE IF EXISTS `books`;
-CREATE TABLE IF NOT EXISTS `books` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `books` (
+  `id` int(11) NOT NULL,
   `title` varchar(240) NOT NULL,
   `genre` varchar(120) DEFAULT NULL,
-  `FK_author_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_author_id` (`FK_author_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  `FK_author_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Truncate table before insert `book`
+-- RELATIONSHIPS FOR TABLE `books`:
+--   `FK_author_id`
+--       `authors` -> `id`
+--
+
+--
+-- Truncate table before insert `books`
 --
 
 TRUNCATE TABLE `books`;
 --
--- Dumping data for table `book`
+-- Dumping data for table `books`
 --
 
 INSERT INTO `books` (`id`, `title`, `genre`, `FK_author_id`) VALUES
-(1, 'Como dormir la siesta', 'Life-hacks', 2);
+(1, 'Como dormir la siesta', 'Life-hacks', 2),
+(2, 'Codeando a ultimo momento', 'Procrastination', 1),
+(3, 'Odio a los perros', 'Autobio', 2),
+(6, 'el señor de los anillos', 'historico', 3);
 
 -- --------------------------------------------------------
 
@@ -85,15 +96,17 @@ INSERT INTO `books` (`id`, `title`, `genre`, `FK_author_id`) VALUES
 --
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(120) NOT NULL,
   `alias` varchar(80) NOT NULL,
-  `is_admin` tinyint(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  `is_admin` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- RELATIONSHIPS FOR TABLE `users`:
+--
 
 --
 -- Truncate table before insert `users`
@@ -105,18 +118,65 @@ TRUNCATE TABLE `users`;
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `alias`, `is_admin`) VALUES
-(1, 'demo@mail.com', 'no va a andar', 'demo', 0),
-(2, '[value-1]', '[value-2]', '[value-3]', 0);
+(3, 'mail@mail.com', '$2y$10$LApuRcCMnCjFDc3teyHOueIEYrJ6CK111fBMj.CvD5DcXTbLi29a2', 'Martin', 0),
+(5, 'mail2@mail.com', '$2y$10$VZZjriG1KEroetDn0TRC4.fEr0CcPF4ttjfClSUWZolCWIjqE6XDG', 'Ricardo', 0),
+(6, 'mail3@mail.com', '$2y$10$osEyNHbnXwVxRWOmkP9okOPBhIydNeoe9RGjhHcE1UuAJNiofrar2', 'Coco', 0);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `authors`
+--
+ALTER TABLE `authors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `books`
+--
+ALTER TABLE `books`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_author_id` (`FK_author_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `authors`
+--
+ALTER TABLE `authors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `books`
+--
+ALTER TABLE `books`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `book`
+-- Constraints for table `books`
 --
 ALTER TABLE `books`
-  ADD CONSTRAINT `book_ibfk_1` FOREIGN KEY (`FK_author_id`) REFERENCES `authors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`FK_author_id`) REFERENCES `authors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

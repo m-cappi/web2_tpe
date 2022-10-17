@@ -11,8 +11,8 @@ Class HomeView extends View{
         $this->smarty->assign('docTitle', DOC_TITLE);
     }
 
-    public function showHome(){
-        $this->showLayout("home.tpl");
+    public function showHome($errorMsg = ''){
+        $this->showLayout("home.tpl", $errorMsg);
     }
 }
 

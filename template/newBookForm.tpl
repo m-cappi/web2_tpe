@@ -10,7 +10,7 @@
 
     <select class="form-select mb-3" aria-label="Authors list" name="FK_author_id">
     {foreach from=$authors item=$author}
-        <option value="{$author->id}">{$author->last_name}, {$author->name}</option>
+        <option value="{$author->id}">{$author->last_name|lower|capitalize}, {$author->name|lower|capitalize}</option>
     {/foreach}
         </select>
     <button type="submit" class="btn btn-primary w-75 mx-auto mb-3">Enviar</button>

@@ -21,7 +21,7 @@ Class AuthorController extends Controller{
 
     public function detailsById($arr){
         // Detalle de item
-        $data = $this->model->getById($arr['id']);
+        $data = $this->model->getById($arr['authorId']);
         $this->view->showDetails($data);
     }
 
@@ -33,18 +33,19 @@ Class AuthorController extends Controller{
         }
         else{
             // error?
-            //Debug($_POST);
+            Debug($_POST);
         }
         $this->listAll();
     }
 
     public function updateOne(){
         $this->authCheck();
-        if (!empty($_POST['id']) && !empty($_POST['name']) && !empty($_POST['lastName'])){
-            $this->model->updateById($_POST['id'], $_POST['name'], $_POST['lastName']);
+        if (!empty($_POST['id']) && !empty($_POST['name']) && !empty($_POST['last_name'])){
+            $this->model->updateById($_POST['id'], $_POST['name'], $_POST['last_name']);
         }
         else{
             // error?
+            Debug($_POST);
         }
         $this->listAll();
     }
@@ -56,6 +57,7 @@ Class AuthorController extends Controller{
         }
         else{
             // error?
+            Debug($_POST);
         }
         $this->listAll();
     }

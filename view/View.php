@@ -24,9 +24,10 @@ abstract Class View{
         }
     }
 
-    public function showLayout($contentTemplate){
+    public function showLayout($contentTemplate, $errorMsg = ''){
         //$contentTemplate == file name
         $this->userAssignment();
+        $this->smarty->assign('errorMsg', $errorMsg);
         $this->smarty->assign('contentTemplate', $contentTemplate);
         $this->smarty->display("../template/layout.tpl");
     }

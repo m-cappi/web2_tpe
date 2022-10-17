@@ -5,16 +5,16 @@
 
   <div class="mb-3">
     <label for="alias" class="form-label">Nombre</label>
-    <input type="text" class="form-control" id="alias" name="alias" value="Martin" required >
+    <input type="text" class="form-control" id="alias" name="alias" required >
   </div>
   <div class="mb-3">
     <label for="email" class="form-label">Email</label>
-    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="mail@mail.com" required>
+    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
     <div id="emailHelp" class="form-text">Prometemos compartir tu email y datos financierons con la AFIP.</div>
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Contraseña</label>
-    <input type="password" class="form-control" id="password" name="password" value="123456" >
+    <input type="password" class="form-control" id="password" name="password"  >
   </div>
   {* <div class="mb-3">
     <label for="password2" class="form-label">Verificar contraseña</label>

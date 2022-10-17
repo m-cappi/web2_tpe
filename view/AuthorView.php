@@ -11,13 +11,16 @@ Class AuthorView extends View{
         $this->smarty->assign('docTitle', DOC_TITLE);
     }
 
-    public function showList($authorsObj){
+    public function showList($authorsObj, $errorMsg = ''){
         $this->smarty->assign('authors', $authorsObj);
-        $this->showLayout("authorsList.tpl");
+        $this->smarty->assign('docTitle', DOC_TITLE." - Autores");
+        $this->showLayout("authorsList.tpl", $errorMsg);
     }
-
-    public function showDetails($authorObj){
-        
+    
+    public function showDetails($authorObj, $errorMsg = ''){
+        $this->smarty->assign('author', $authorObj);
+        $this->smarty->assign('docTitle', $authorObj->name.' '.$authorObj->last_name);
+        $this->showLayout("authorDetails.tpl", $errorMsg);
     }
 }
 
