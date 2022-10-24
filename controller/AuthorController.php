@@ -13,53 +13,57 @@ Class AuthorController extends Controller{
         $this->view = new AuthorView();
     }
 
-    public function listAll(){
+    public function listAll($error=''){
         // Listado de categoria
         $authors = $this->model->getAll();
-        $this->view->showList($authors);
+        $this->view->showList($authors, $error);
     }
 
-    public function detailsById($arr){
+    public function detailsById($arr, $error=''){
         // Detalle de item
         $data = $this->model->getById($arr['authorId']);
-        $this->view->showDetails($data);
+        $this->view->showDetails($data, $error);
     }
 
     //CRUD
     public function addOne(){
         $this->authCheck();
+        $error=null;
         if (!empty($_POST['name']) && !empty($_POST['last_name'])){
             $this->model->addOne($_POST['name'], $_POST['last_name']);
         }
         else{
-            // error?
-            Debug($_POST);
+            $error="Faltan datos!"
+            // Debug($_POST);
         }
-        $this->listAll();
+        $this->listAll($error);
     }
 
     public function updateOne(){
         $this->authCheck();
         if (!empty($_POST['id']) && !empty($_POST['name']) && !empty($_POST['last_name'])){
             $this->model->updateById($_POST['id'], $_POST['name'], $_POST['last_name']);
+            $this->listAll();
         }
         else{
-            // error?
-            Debug($_POST);
+            $error= "Faltan datos!";
+            $mockedParams = ["authorId"=>$_POST['id']];
+            $this->detailsById($mockedParams, $error);
+            // Debug($_POST);
         }
-        $this->listAll();
     }
-    
+
     public function deleteOne(){
         $this->authCheck();
+        $error=null;
         if (!empty($_POST['id'])){
             $this->model->deleteById($_POST['id']);
         }
         else{
-            // error?
-            Debug($_POST);
+            $error="Falta el id!";
+            // Debug($_POST);
         }
-        $this->listAll();
+        $this->listAll($error);
     }
 }
 

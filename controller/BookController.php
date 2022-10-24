@@ -16,18 +16,18 @@ Class BookController extends Controller{
         $this->authorModel = new AuthorModel();
     }
 
-    public function listAll(){
+    public function listAll($error=''){
         // Listado de item
         $booksWithAuthor = $this->model->getAllJoint();
         $authors = $this->authorModel->getAll();
-        $this->view->showList($booksWithAuthor, $authors);
+        $this->view->showList($booksWithAuthor, $authors, $error);
     }
 
-    public function detailsById($arr){
+    public function detailsById($arr, $error=''){
         // Detalle de item
         $book = $this->model->getById($arr['id']);
         $authors = $this->authorModel->getAll();
-        $this->view->showDetails($book, $authors);
+        $this->view->showDetails($book, $authors, $error);
     }
 
     public function listByAuthorId($arr){
@@ -41,38 +41,41 @@ Class BookController extends Controller{
     // CRUD
     public function addOne(){
         $this->authCheck();
+        $error=null;
         if (!empty($_POST['title']) && !empty($_POST['genre']) && !empty($_POST['FK_author_id'])){
             $this->model->addOne($_POST['title'], $_POST['genre'], $_POST['FK_author_id']);
         }
         else{
-            // error?
-            Debug($_POST);
+            $error="Faltan datos!";
+            // Debug($_POST);
         }
-        $this->listAll();
+        $this->listAll($error);
     }
 
     public function updateOne(){
         $this->authCheck();
         if (!empty($_POST['id']) && !empty($_POST['title']) && !empty($_POST['genre']) && !empty($_POST['FK_author_id'])){
             $this->model->updateById($_POST['id'], $_POST['title'], $_POST['genre'], $_POST['FK_author_id']);
+            $this->listAll();
         }
         else{
-            // error?
-            Debug($_POST);
+            $error = "Faltan datos!";
+            $mockedParams = ["id"=>$_POST['id']];
+            $this->detailsById($mockedParams, $error);
         }
-        $this->listAll();
     }
     
     public function deleteOne(){
         $this->authCheck();
+        $error=null;
         if (!empty($_POST['id'])){
             $this->model->deleteById($_POST['id']);
         }
         else{
-            // error?
-            Debug($_POST);
+            $error="Falta el id!";
+            // Debug($_POST);
         }
-        $this->listAll();
+        $this->listAll($error);
     }
 
 }

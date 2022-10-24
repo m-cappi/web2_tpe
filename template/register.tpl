@@ -14,7 +14,7 @@
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Contraseña</label>
-    <input type="password" class="form-control" id="password" name="password"  >
+    <input type="password" class="form-control" id="password" name="password" required >
   </div>
   {* <div class="mb-3">
     <label for="password2" class="form-label">Verificar contraseña</label>

@@ -53,7 +53,7 @@ Class AuthController extends Controller{
 
     public function register(){
         if (empty($_POST['email']) || empty($_POST['password']) || empty($_POST['alias'])){
-            Debug($_POST);
+            // Debug($_POST);
             return $this->view->showRegister("Faltan datos!");
         }
         $this->model->addOne($_POST['email'],$_POST['password'],$_POST['alias'], !empty($_POST['isAdmin']));

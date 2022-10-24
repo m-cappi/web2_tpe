@@ -13,8 +13,8 @@ Class HomeController extends Controller{
         $this->view = new HomeView();
     }
 
-    public function getHome(){
-        $this->view->showHome();
+    public function getHome($error=''){
+        $this->view->showHome($error);
     }
 }
 
