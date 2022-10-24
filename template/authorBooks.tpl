@@ -4,6 +4,12 @@
 
 <h1>Listado de autores</h1>
 
+{if !empty($errorMsg)}
+  <p class="alert alert-danger text-center w-75 mx-auto" role="alert">
+    {$errorMsg}
+  </p>
+{/if}
+
 <section class="container gap-3">
 <article class="row bg-primary bg-gradient fs-4">
     <p class="col-6">

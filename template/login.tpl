@@ -11,6 +11,13 @@
     <label for="password" class="form-label">Contraseña</label>
     <input type="password" class="form-control" id="password" name="password" required>
   </div>
+
+  {if !empty($errorMsg)}
+    <p class="alert alert-danger text-center w-75 mx-auto" role="alert">
+      {$errorMsg}
+    </p>
+  {/if}
+
   <button type="submit" class="btn btn-primary w-75 mx-auto mb-3">Iniciar</button>
 
   
