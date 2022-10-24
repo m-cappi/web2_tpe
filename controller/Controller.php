@@ -25,7 +25,9 @@ abstract Class Controller{
         if (session_status() == PHP_SESSION_NONE){
             session_start();
         }
-        if (empty($_SESSION['isAuthenticated'])) {
+
+        $isNotAuthenticated = empty($_SESSION['isAuthenticated']);
+        if ($isNotAuthenticated) {
             $this->forceLogout();
         }
     }
