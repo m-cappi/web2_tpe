@@ -18,11 +18,9 @@ Class UserModel extends Model{
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
-    public function addOne($email, $password, $alias, $isAdmin = 0){
-        $hash = password_hash($password, PASSWORD_BCRYPT);
-
+    public function addOne($email, $hashedPassword, $alias, $isAdmin = false){
         $query = $this->db->prepare("INSERT INTO `{$this->tableName}`(`email`, `password`, `alias`, `is_admin`) VALUES (?,?,?,?)");
-        $query->execute(array($email, $hash, $alias, $isAdmin));
+        $query->execute(array($email, $hashedPassword, $alias, $isAdmin));
         return $query->fetch(PDO::FETCH_OBJ);
     }
 }

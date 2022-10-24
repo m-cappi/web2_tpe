@@ -33,7 +33,7 @@ Class AuthorController extends Controller{
             $this->model->addOne($_POST['name'], $_POST['last_name']);
         }
         else{
-            $error="Faltan datos!"
+            $error="Faltan datos!";
             // Debug($_POST);
         }
         $this->listAll($error);

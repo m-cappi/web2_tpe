@@ -56,7 +56,10 @@ Class AuthController extends Controller{
             // Debug($_POST);
             return $this->view->showRegister("Faltan datos!");
         }
-        $this->model->addOne($_POST['email'],$_POST['password'],$_POST['alias'], !empty($_POST['isAdmin']));
+        $hashedPassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        $isAdmin =  !empty($_POST['isAdmin']);
+
+        $this->model->addOne($_POST['email'], $hashedPassword, $_POST['alias'], $isAdmin);
         $this->login();
     }
 }
