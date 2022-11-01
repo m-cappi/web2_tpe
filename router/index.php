@@ -41,5 +41,3 @@ $r->addRoute("author/delete", "POST", "AuthorController", "deleteOne");
 
 // run
 $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
-
-?>

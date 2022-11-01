@@ -80,4 +80,3 @@ Class BookController extends Controller{
 
 }
 
-?>

@@ -21,4 +21,3 @@ Class UserView extends View{
     }
 }
 
-?>

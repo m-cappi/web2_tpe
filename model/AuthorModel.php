@@ -38,4 +38,3 @@ Class AuthorModel extends Model{
     }
     */
 }
-?>

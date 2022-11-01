@@ -27,4 +27,3 @@ abstract Class Model{
         $query->execute(array($id));
     }
 }
-?>

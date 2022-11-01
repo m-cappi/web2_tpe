@@ -7,4 +7,3 @@ function Debug($obj){
         die();
     }
 }
-?>

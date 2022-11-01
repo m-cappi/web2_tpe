@@ -16,4 +16,3 @@ Class HomeView extends View{
     }
 }
 
-?>

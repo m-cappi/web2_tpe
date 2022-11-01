@@ -26,4 +26,3 @@ Class BookView extends View{
     }
 }
 
-?>

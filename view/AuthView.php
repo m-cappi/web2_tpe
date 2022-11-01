@@ -22,4 +22,3 @@ Class AuthView extends View{
     }
 }
 
-?>

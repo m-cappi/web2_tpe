@@ -67,4 +67,3 @@ Class AuthorController extends Controller{
     }
 }
 
-?>

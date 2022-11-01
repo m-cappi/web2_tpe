@@ -24,4 +24,3 @@ Class AuthorView extends View{
     }
 }
 
-?>

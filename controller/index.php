@@ -9,4 +9,3 @@ require_once('HomeController.php');
 // require_once('UserController.php');
 
 
-?>
